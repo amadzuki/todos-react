@@ -1,0 +1,10 @@
+[
+  {
+    "text": "start creating todo react app",
+    "completed": "false",
+    "dateCreated": "",
+    "dueDate": "",
+    "priority": "1",
+    "note": "here can be used for description of the todo or detailed actions for it."
+  }
+]
