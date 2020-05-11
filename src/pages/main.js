@@ -1,22 +1,15 @@
 import React from "react"
-import { connect } from "react-redux"
 
 import Layout from "../components/Layout"
-import TodoLine from "../components/TodoLine"
+import TodoList from "../components/TodoList"
 
-const main = ({ todos }) => {
+const main = () => {
   return (
     <div>
       <Layout></Layout>
-      <TodoLine></TodoLine>
+      <TodoList></TodoList>
     </div>
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    todos: state.todos,
-  }
-}
-
-export default connect(mapStateToProps)(main)
+export default main

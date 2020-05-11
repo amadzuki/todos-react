@@ -1,5 +1,4 @@
 const initialState = {
-  currentId: 0,
   todos: [
     {
       text: "start creating todo react app",
@@ -17,18 +16,14 @@ const todoState = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_TODO":
       return {
-        ...state,
-        currentId: state.currentId + 1,
         todos: [
           ...state.todos,
           {
             id: state.currentId,
             text: action.payload.text,
             isDone: false,
+            isFavorite: false,
             dateCreated: action.payload.dateCreated,
-            dueDate: action.payload.dueDate,
-            isFavorite: action.payload.isFavorite,
-            note: action.payload.note,
           },
         ],
       }
