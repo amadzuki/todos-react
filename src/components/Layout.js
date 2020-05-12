@@ -5,12 +5,18 @@ const Header = styled.h1`
   border-bottom: 2;
 `
 
+const LayoutStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
 const Layout = ({ children }) => {
   return (
-    <div>
+    <LayoutStyle>
       <Header>Todo React</Header>
       {children}
-    </div>
+    </LayoutStyle>
   )
 }
 
