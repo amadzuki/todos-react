@@ -14,22 +14,18 @@ const TodoSubmitButton = styled.input`
 `
 
 const AddTodoForm = (props) => {
-  const [todoText, setTodoText] = useState()
+  const [todoText, setTodoText] = useState("")
 
   const onChange = (event) => {
     setTodoText(event.target.value)
   }
-  const onSubmit = (todoText) => {
+  const onSubmit = (event) => {
+    event.preventDefault()
     props.addTodo(todoText)
     setTodoText("")
   }
   return (
-    <AddTodoFormStyle
-      onSubmit={(event) => {
-        event.preventDefault()
-        onSubmit(todoText)
-      }}
-    >
+    <AddTodoFormStyle onSubmit={onSubmit}>
       <TodoInput type="text" onChange={onChange} value={todoText} />
       <TodoSubmitButton type="submit" value="Add Todo" />
     </AddTodoFormStyle>
