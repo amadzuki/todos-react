@@ -31,7 +31,7 @@ const TodoLine = (props) => {
       <TodoToggleDone
         type="checkbox"
         checked={props.todo.isDone}
-        onClick={() => props.toggleDone()}
+        onChange={props.toggleDone}
       />
       <TodoText done={props.todo.isDone}>{props.todo.text}</TodoText>
       <TodoToggleFavorited
