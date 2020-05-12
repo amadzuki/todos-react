@@ -29,7 +29,10 @@ const todoReducers = (state = initialState, action) => {
         ...state,
         todos: state.todos.map((todo) => {
           if (todo.id === action.payload.id) {
-            return Object.assign({}, todo, { isDone: !todo.isDone })
+            return {
+              ...todo,
+              isDone: !todo.isDone,
+            }
           }
           return todo
         }),
