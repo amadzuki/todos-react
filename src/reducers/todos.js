@@ -1,35 +1,42 @@
 const initialState = {
+  currentId: 1,
   todos: [
     {
+      id: 1,
       text: "start creating todo react app",
       isDone: false,
-      dateCreated: "",
-      dueDate: "",
-      isFavorite: false,
-      note:
-        "here can be used for description of the todo or detailed actions for it.",
     },
   ],
 }
 
-const todoState = (state = initialState, action) => {
+const todoReducers = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_TODO":
       return {
+        ...state,
+        currentId: state.currentId++,
         todos: [
           ...state.todos,
           {
             id: state.currentId,
             text: action.payload.text,
             isDone: false,
-            isFavorite: false,
-            dateCreated: action.payload.dateCreated,
           },
         ],
+      }
+    case "TOGGLE_DONE":
+      return {
+        ...state,
+        todos: state.todos.map((todo) => {
+          if (todo.id === action.payload.id) {
+            return Object.assign({}, todo, { isDone: !todo.isDone })
+          }
+          return todo
+        }),
       }
     default:
       return state
   }
 }
 
-export default todoState
+export default todoReducers
