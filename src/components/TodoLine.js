@@ -5,12 +5,14 @@ import styled from "@xstyled/styled-components"
 const TodoLineStyle = styled.box`
   display: flex;
   margin: 15 2;
-  p {
-    margin: 0 auto 0 12;
-  }
   padding: 10;
   border: 1;
   border-radius: 9;
+`
+
+const TodoText = styled.p`
+  margin: 0 auto 0 12;
+  text-decoration: ${(props) => (props.done ? "line-through" : "none")};
 `
 
 const TodoLine = (props) => {
@@ -21,7 +23,7 @@ const TodoLine = (props) => {
         checked={props.todo.isDone}
         onClick={() => props.toggleDone()}
       />
-      <p>{props.todo.text}</p>
+      <TodoText done={props.todo.isDone}>{props.todo.text}</TodoText>
       <div>{props.todo.isFavorite ? "★" : "☆"}</div>
     </TodoLineStyle>
   )
