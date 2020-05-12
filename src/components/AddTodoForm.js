@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { connect } from "react-redux"
 import styled from "@xstyled/styled-components"
 
@@ -12,10 +12,25 @@ const TodoSubmitButton = styled.input`
   padding: 2;
   margin-left: 2;
 `
-const AddTodoForm = () => {
+
+const AddTodoForm = (props) => {
+  const [todoText, setTodoText] = useState()
+
+  const onChange = (event) => {
+    setTodoText(event.target.value)
+  }
+  const onSubmit = (todoText) => {
+    props.addTodo(todoText)
+    setTodoText("")
+  }
   return (
-    <AddTodoFormStyle>
-      <TodoInput type="text" />
+    <AddTodoFormStyle
+      onSubmit={(event) => {
+        event.preventDefault()
+        onSubmit(todoText)
+      }}
+    >
+      <TodoInput type="text" onChange={onChange} value={todoText} />
       <TodoSubmitButton type="submit" value="Add Todo" />
     </AddTodoFormStyle>
   )
@@ -25,8 +40,12 @@ const mapStateToProps = () => {
   return {}
 }
 
-const mapDispatchToProps = () => {
-  return {}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addTodo: (todoText) => {
+      dispatch({ type: "ADD_TODO", payload: { text: todoText } })
+    },
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTodoForm)
