@@ -15,16 +15,32 @@ const TodoText = styled.p`
   text-decoration: ${(props) => (props.done ? "line-through" : "none")};
 `
 
+const TodoToggleDone = styled.input`
+  cursor: pointer;
+`
+
+const TodoToggleFavorited = styled.button`
+  cursor: pointer;
+  border: none;
+  background: none;
+`
+
 const TodoLine = (props) => {
   return (
     <TodoLineStyle>
-      <input
+      <TodoToggleDone
         type="checkbox"
         checked={props.todo.isDone}
         onClick={() => props.toggleDone()}
       />
       <TodoText done={props.todo.isDone}>{props.todo.text}</TodoText>
-      <div>{props.todo.isFavorite ? "★" : "☆"}</div>
+      <TodoToggleFavorited
+        onClick={() => {
+          props.toggleFavorited()
+        }}
+      >
+        {props.todo.isFavorited ? "★" : "☆"}
+      </TodoToggleFavorited>
     </TodoLineStyle>
   )
 }
@@ -35,8 +51,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    toggleDone: () =>
-      dispatch({ type: "TOGGLE_DONE", payload: { id: ownProps.todo.id } }),
+    toggleDone: () => {
+      dispatch({ type: "TOGGLE_DONE", payload: { id: ownProps.todo.id } })
+    },
+    toggleFavorited: () => {
+      dispatch({ type: "TOGGLE_FAVORITED", payload: { id: ownProps.todo.id } })
+    },
   }
 }
 

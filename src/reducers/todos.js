@@ -5,6 +5,7 @@ const initialState = {
       id: 1,
       text: "start creating todo react app",
       isDone: false,
+      isFavorited: false,
     },
   ],
 }
@@ -21,6 +22,7 @@ const todoReducers = (state = initialState, action) => {
             id: state.currentId,
             text: action.payload.text,
             isDone: false,
+            isFavorited: false,
           },
         ],
       }
@@ -32,6 +34,19 @@ const todoReducers = (state = initialState, action) => {
             return {
               ...todo,
               isDone: !todo.isDone,
+            }
+          }
+          return todo
+        }),
+      }
+    case "TOGGLE_FAVORITED":
+      return {
+        ...state,
+        todos: state.todos.map((todo) => {
+          if (todo.id === action.payload.id) {
+            return {
+              ...todo,
+              isFavorited: !todo.isFavorited,
             }
           }
           return todo
