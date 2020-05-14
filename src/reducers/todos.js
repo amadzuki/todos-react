@@ -1,13 +1,6 @@
 const initialState = {
-  currentId: 1,
-  todos: [
-    {
-      id: 1,
-      text: "start creating todo react app",
-      isDone: false,
-      isFavorited: false,
-    },
-  ],
+  currentId: 0,
+  todos: [],
 }
 
 const todoReducers = (state = initialState, action) => {
