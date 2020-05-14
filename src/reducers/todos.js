@@ -8,7 +8,7 @@ const todoReducers = (state = initialState, action) => {
     case "ADD_TODO":
       return {
         ...state,
-        currentId: state.currentId++,
+        currentId: state.currentId + 1,
         todos: [
           ...state.todos,
           {
