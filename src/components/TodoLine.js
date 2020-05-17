@@ -25,6 +25,12 @@ const TodoToggleFavorited = styled.button`
   background: none;
 `
 
+const TodoDeleteButton = styled.button`
+  color: red;
+  border: none;
+  background: none;
+`
+
 const TodoLine = (props) => {
   return (
     <TodoLineStyle>
@@ -41,6 +47,13 @@ const TodoLine = (props) => {
       >
         {props.todo.isFavorited ? "★" : "☆"}
       </TodoToggleFavorited>
+      <TodoDeleteButton
+        onClick={() => {
+          props.deleteTodo()
+        }}
+      >
+        x
+      </TodoDeleteButton>
     </TodoLineStyle>
   )
 }
@@ -56,6 +69,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     toggleFavorited: () => {
       dispatch({ type: "TOGGLE_FAVORITED", payload: { id: ownProps.todo.id } })
+    },
+    deleteTodo: () => {
+      dispatch({ type: "DELETE_TODO", payload: { id: ownProps.todo.id } })
     },
   }
 }

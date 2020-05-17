@@ -14,7 +14,7 @@ const LayoutStyle = styled.div`
 const Layout = ({ children }) => {
   return (
     <LayoutStyle>
-      <Header>Todo React</Header>
+      <Header>Todos React</Header>
       {children}
     </LayoutStyle>
   )
